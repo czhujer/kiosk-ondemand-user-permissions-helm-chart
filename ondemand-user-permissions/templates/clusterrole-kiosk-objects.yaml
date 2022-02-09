@@ -1,0 +1,39 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: kiosk-objects-{{ .Values.userNamespace }}
+  labels:
+    {{- include "ondemand-user-permissions.labels" . | nindent 4 }}
+rules:
+  - apiGroups:
+      - tenancy.kiosk.sh
+    resourceNames:
+      - {{ .Values.resourceName }}
+    resources:
+      - accounts
+    verbs:
+      - get
+  - apiGroups:
+      - config.kiosk.sh
+    resourceNames:
+      - {{ .Values.resourceName }}
+    resources:
+      - accounts
+    verbs:
+      - get
+  - apiGroups:
+      - config.kiosk.sh
+    resourceNames:
+      - {{ .Values.resourceName }}
+    resources:
+      - accountquotas
+    verbs:
+      - get
+  - apiGroups:
+      - tenancy.kiosk.sh
+    resourceNames:
+      - {{ .Values.userNamespace }}
+    resources:
+      - spaces
+    verbs:
+      - get

@@ -1,0 +1,15 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: kiosk-prometheus
+  labels:
+    {{- include "ondemand-user-permissions.labels" . | nindent 4 }}
+  namespace: {{ .Values.userNamespace }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: kiosk-prometheus
+subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: User
+    name: {{ .Values.userName }}
