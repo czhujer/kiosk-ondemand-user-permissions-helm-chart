@@ -1,0 +1,14 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: kiosk-prometheus
+  labels:
+    {{- include "ondemand-user-permissions.labels" . | nindent 4 }}
+  namespace: {{ .Values.userNamespace }}
+rules:
+  - apiGroups:
+      - monitoring.coreos.com
+    resources:
+      - '*'
+    verbs:
+      - '*'

@@ -1,0 +1,6 @@
+apiVersion: v2
+name: ondemand-user-permissions
+description: A Helm chart with RBAC for kiosk users for working with some CRDs and reading some system objects
+type: application
+version: 0.2.1
+appVersion: "1.16.0"
